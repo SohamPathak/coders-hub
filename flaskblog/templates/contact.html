@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+ 
+{% block content %}
+  <h2>Contact</h2>
+ 
+  {% for message in form.name.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+ 
+  {% for message in form.email.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+ 
+  {% for message in form.subject.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+ 
+  {% for message in form.message.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+   
+  <form action="{{ url_for('contact') }}" method=post>
+    {{ form.hidden_tag() }}
+ 
+    {{ form.name.label(class="form-control-label") }}
+    {{ form.name }}
+ 
+    {{ form.email.label(class="form-control-label") }}
+    {{ form.email }}
+ 
+    {{ form.subject.label(class="form-control-label") }}
+    {{ form.subject }}
+ 
+    {{ form.message.label(class="form-control-label") }}
+    {{ form.message }}
+ 
+    {{ form.submit(class="btn btn-outline-info") }}
+  </form>
+{% endblock %}
+
+

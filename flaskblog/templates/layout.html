@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- static/main.CSS -->
+    <link rel="stylesheet"  type="text/css" href="{{ url_for('static',filename='main.css') }}"> 
+    <!--  al bal  -->
+ 
+  <!--  <link rel="stylesheet" href="static/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="static/tether/tether.min.css">
+  <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css"> 
+  <link rel="stylesheet" href="static/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="static/bootstrap/css/bootstrap-reboot.min.css">
+  
+ -->
+  <link rel="stylesheet" href="static/animatecss/animate.min.css">
+  <link rel="stylesheet" href="static/socicon/css/styles.css">
+  <link rel="stylesheet" href="static/theme/css/style.css">
+  <link rel="stylesheet" href="static/mobirise/css/mbr-additional.css" type="text/css">
+
+
+
+<!-- if explicitly title not defined through render than else cond. -->
+{% if title %}
+<title>{{title}}</title>
+{% else %}
+<title>CodehuB</title>
+{% endif %}
+</head>
+<body>
+     <!-- navigation bar -->
+
+	<header class="site-header">
+	<nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+	
+	<div class="container">
+	  <img class="rounded-circle article-img" src="{{ url_for('static', filename='images/LOGO.PNG') }}" alt="Coder'sBlog" title="">
+	  <a class="navbar-brand mr-4" href="/">CodehuB </a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarToggle">
+	    <div class="navbar-nav mr-auto">
+	      <a class="nav-item nav-link" href="/">Home</a>
+	      <a class="nav-item nav-link" href="/about">About</a>
+	    </div>
+	    <!-- Navbar Right Side -->
+	    <div class="navbar-nav">
+              {% if current_user.is_authenticated %}
+                
+                <a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Post</a>
+                <a class="nav-item nav-link" href="{{ url_for('account') }}">My Account</a>
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+              {% endif %}
+	    </div>
+	  </div>
+	</div>
+	</nav>
+	</header>
+
+
+
+ <section class="cid-r7c6BVUUGR mbr-fullscreen mbr-parallax-background" id="header2-e">
+	<!-- main division where the value of block goes -->
+	<main role="main" class="container">
+	  <div class="row">
+	    <div class="col-md-8">
+	    <!-- value of block  -->
+	    {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+        {% endwith %}
+	      {% block content %}{% endblock %}
+	    
+	    </div>
+	    <div class="col-md-4">
+	      <div class="content-section">
+	        <h3>Hey!!</h3>
+	        <p class='text-muted'>Let's get started.
+	          <ul class="list-group">
+	            <li class="list-group-item list-group-item-light"><a href="{{ url_for('topic') }}">Topics</li>
+	            <li class="list-group-item list-group-item-light">Discussions</li>
+	            <li class="list-group-item list-group-item-light">What's New</li>
+	            <li class="list-group-item list-group-item-light">Like Us</li>
+	            <li class="list-group-item list-group-item-light"><a href="{{ url_for('contact') }}">contact us</a></li>
+	          </ul>
+	        </p>
+	      </div>
+	    </div>
+	  </div>
+	</main>
+
+ </section>
+
+ <section class="cid-qZ19ssl7Pi" id="footer5-d">
+
+    
+
+    
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="col-md-3">
+                <div class="media-wrap">
+                    <a href="static/images/LOGO.PNG">
+                       
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <p class="mbr-text align-right links mbr-fonts-style display-7">
+                    <img class="rounded-circle article-img" src="{{ url_for('static', filename='images/LOGO.PNG') }}" alt="Coder'sBlog" title="">
+                    <a href="#" class="text-black">ABOUT</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="text-black">TERMS</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="text-black">CAREERS</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="text-black">CONTACT</a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-lower">
+            <div class="media-container-row">
+                <div class="col-md-12">
+                    <hr>
+                </div>
+            </div>
+            <div class="media-container-row mbr-white">
+                <div class="col-md-6 copyright">
+                    <p class="mbr-text mbr-fonts-style display-7">
+                        © Copyright 2018 SOHAM PATHAK - All Rights Reserved
+                        </br>
+                        Student partner : <a href="">KIIT_AI_SOCIETY</a>
+                       
+                        
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="social-list align-right">
+                        <div class="soc-item">
+                            <a href="https://twitter.com/mobirise" target="_blank">
+                                <span class="socicon-twitter socicon mbr-iconfont mbr-iconfont-social"></span>
+                            </a>
+                        </div>
+                        <div class="soc-item">
+                            <a href="https://www.facebook.com/pages/Mobirise/1616226671953247" target="_blank">
+                                <span class="socicon-facebook socicon mbr-iconfont mbr-iconfont-social"></span>
+                            </a>
+                        </div>
+             <!--           <div class="soc-item">
+                            <a href="https://www.youtube.com/c/mobirise" target="_blank">
+                                <span class="socicon-youtube socicon mbr-iconfont mbr-iconfont-social"></span>
+                            </a>
+                        </div>
+                          <div class="soc-item">
+                            <a href="https://plus.google.com/u/0/+Mobirise" target="_blank">
+                                <span class="socicon-googleplus socicon mbr-iconfont mbr-iconfont-social"></span>
+                            </a>
+                        </div> 
+                         -->
+                        <div class="soc-item">
+                            <a href="https://instagram.com/mobirise" target="_blank">
+                                <span class="mbr-iconfont mbr-iconfont-social socicon-linkedin socicon"></span>
+                            </a>
+                        </div>
+                      
+                        <div class="soc-item">
+                            <a href="https://www.behance.net/Mobirise" target="_blank">
+                                <span class="mbr-iconfont mbr-iconfont-social socicon-github socicon"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </section>
+
+  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+     <script src="static/web/assets/jquery/jquery.min.js"></script>
+  <!--<script src="static/popper/popper.min.js"></script>-->
+  <script src="static/tether/tether.min.js"></script>
+  <script src="static/bootstrap/js/bootstrap.min.js"></script>
+  <script src="static/parallax/jarallax.min.js"></script>
+  <script src="static/viewportchecker/jquery.viewportchecker.js"></script>
+  <script src="static/smoothscroll/smooth-scroll.js"></script>
+  <script src="static/theme/js/script.js"></script> 
+   <input name="animation" type="hidden">
+</body>
+</html>

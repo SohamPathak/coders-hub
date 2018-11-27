@@ -1,0 +1,16 @@
+ from flask_bcrypt import Bcrypt
+>>> bcrypt = Bcrypt()
+>>>
+>>> hashed_psswd=bcrypt.generate_password_hash('kaiser')
+>>> bcrypt.check_password_hash(hashed_psswd,'kaiser')
+True
+>>> hashed_psswd
+b'$2b$12$j.YwrGnJckiakMztL.zOC.9LlJllGofNOiVmloKJiDR5S28qUPqA.'
+>>>  hashed_psswd_string=bcrypt.generate_password_hash('kaiser').decode('UTF-8')
+  File "<stdin>", line 1
+    hashed_psswd_string=bcrypt.generate_password_hash('kaiser').decode('UTF-8')
+    ^
+IndentationError: unexpected indent
+>>> hashed_psswd_string=bcrypt.generate_password_hash('kaiser').decode('UTF-8')
+>>> hashed_psswd_string
+'$2b$12$MxOygVKH1hB7utGu8kfoTeO/f/xPJEAMgQvjQNbIZ7b8v419FJ0SW'
